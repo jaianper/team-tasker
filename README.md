@@ -1,81 +1,80 @@
+```
+# Technical Challenge: Team Task Management Platform (TeamTasker)
 
-# Reto Técnico: Plataforma de Gestión de Tareas para Equipos (TeamTasker)
-
-## Objetivo
-Desarrollar un sistema backend de microservicios para gestionar tareas dentro de equipos de trabajo. El sistema debe permitir:
-- Crear equipos.
-- Agregar miembros a un equipo.
-- Asignar tareas a miembros.
-- Actualizar el estado de las tareas.
-- Consultar tareas por estado, prioridad o responsable.
-
----
-
-## Requisitos funcionales
-1. **Gestión de Equipos**
-    - Crear, actualizar, eliminar y listar equipos.
-    - Agregar y eliminar miembros a un equipo.
-
-2. **Gestión de Usuarios**
-    - Registro e inicio de sesión (token JWT).
-    - Roles: `ADMIN`, `MEMBER`.
-    - Seguridad: solo usuarios con rol `ADMIN` pueden crear equipos y asignar tareas.
-
-3. **Gestión de Tareas**
-    - CRUD de tareas: título, descripción, prioridad, estado (`TODO`, `IN_PROGRESS`, `DONE`), fecha límite.
-    - Asignación de tareas a un miembro.
-    - Filtros: por estado, prioridad, asignado.
-
-4. **API REST + Swagger**
-    - Toda la funcionalidad debe estar disponible como API RESTful, bien documentada con Swagger/OpenAPI.
+## Objective
+Develop a microservices backend system for managing tasks within work teams. The system must allow:
+- Creating teams
+- Adding members to a team
+- Assigning tasks to members
+- Updating task status
+- Querying tasks by status, priority, or assignee
 
 ---
 
-## Requisitos técnicos
+## Functional Requirements
+1. **Team Management**
+    - Create, update, delete, and list teams
+    - Add and remove team members
+
+2. **User Management**
+    - Registration and login (JWT token)
+    - Roles: `ADMIN`, `MEMBER`
+    - Security: only users with `ADMIN` role can create teams and assign tasks
+
+3. **Task Management**
+    - Task CRUD: title, description, priority, status (`TODO`, `IN_PROGRESS`, `DONE`), deadline
+    - Task assignment to members
+    - Filters: by status, priority, assignee
+
+4. **REST API + Swagger**
+    - All functionality must be available as a RESTful API, well documented with Swagger/OpenAPI
+
+---
+
+## Technical Requirements
 - **Java 17+**
 - **Spring Boot + WebFlux**
-- **JWT para autenticación**
-- **MongoDB o PostgreSQL (puedes elegir)**
+- **JWT for authentication**
+- **MongoDB or PostgreSQL (your choice)**
 - **Swagger/OpenAPI**
-- **Arquitectura limpia (Clean Architecture)**
-- **Separación por capas (Domain, Application, Infrastructure)**
-- **Aplicar principios SOLID y buenas prácticas de Clean Code**
-- **Manejo adecuado de errores y validaciones**
-- **Tests unitarios y de integración (mínimo en 2 capas)**
-- **Uso de patrones de diseño donde sea pertinente (ej. Factory, Strategy, etc.)**
-- **Uso de DTOs y mapeo con ModelMapper o MapStruct**
+- **Clean Architecture**
+- **SOLID principles and Clean Code practices**
+- **Proper error handling and validations**
+- **Unit and integration tests (minimum in 2 layers)**
+- **Design patterns where appropriate (e.g., Factory, Strategy, etc.)**
+- **DTOs and mapping with ModelMapper or MapStruct**
 
 ---
 
-## Plus opcional
-- Contenerización con Docker.
-- Uso de Spring Cloud Config o Eureka para simular un ecosistema de microservicios.
-- CI/CD básico con GitHub Actions.
-- Rate limiting en endpoints sensibles.
-- Auditing y logging estructurado (ej. con SLF4J + Logback/Logstash format).
+## Optional Extras
+- Docker containerization
+- Spring Cloud Config or Eureka for microservices ecosystem simulation
+- Basic CI/CD with GitHub Actions
+- Rate limiting on sensitive endpoints
+- Structured auditing and logging (e.g., with SLF4J + Logback/Logstash format)
 
 ---
 
-## Ejemplo de escenario de prueba
-Un usuario admin:
-1. Se registra e inicia sesión.
-2. Crea un equipo llamado "DevOps".
-3. Agrega a dos usuarios al equipo.
-4. Crea tres tareas y asigna una a cada miembro.
-5. Consulta tareas del equipo filtrando por estado y prioridad.
+## Test Scenario Example
+An admin user:
+1. Registers and logs in
+2. Creates a team called "DevOps"
+3. Adds two users to the team
+4. Creates three tasks and assigns one to each member
+5. Queries team tasks filtering by status and priority
 
 ---
 
-## Estructura esperada del repositorio
-```
-teamtasker-backend/
-├── docs/                  # Documentación y Swagger
-├── domain/                # Entidades, repositorios y lógica de negocio
-├── application/           # Casos de uso
-├── infrastructure/        # Adaptadores externos, base de datos, Web, JWT
-├── config/                # Beans, security, mapeadores
-├── tests/                 # Unitarios e integración
-├── Dockerfile             # Opcional
-├── README.md              # Explica cómo correr la app y probarla
-├── pom.xml
-```
+## Project Structure
+
+The project follows Hexagonal Architecture (also known as Ports and Adapters) with three main layers:
+
+- **Domain**: Contains the core business logic and entities
+- **Application**: Houses the use cases and ports (interfaces)
+- **Infrastructure**: Contains the adapters that implement the ports and framework-specific code
+
+This architecture ensures:
+- Clear separation of concerns
+- Business logic independence from external frameworks
+- Easy testing and maintenance
+- High modularity and flexibility
