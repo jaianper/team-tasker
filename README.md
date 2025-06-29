@@ -1,4 +1,3 @@
-```
 # Technical Challenge: Team Task Management Platform (TeamTasker)
 
 ## Objective
